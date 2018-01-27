@@ -11,9 +11,12 @@ public class Player : MonoBehaviour {
 
     public float speed = 5.0f;
 
-	// Use this for initialization
-	void Start () {
+    GameObject controller;
+
+    // Use this for initialization
+    void Start () {
         pathGO = GameObject.Find("Path");
+        controller = GameObject.Find("GameController");
 	}
 	
     void GetNextPathNode()
@@ -30,39 +33,46 @@ public class Player : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-        
-        if (targetPathNode == null)
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (!controller.GetComponent<GameController>().preparePhase)
         {
-            GetNextPathNode();
+            // follow phase start
+            Debug.Log("not preparing");
+
             if (targetPathNode == null)
             {
-                // end of path
-                ReachGoal();
-                return;
+                GetNextPathNode();
+                if (targetPathNode == null)
+                {
+                    // end of path
+                    ReachGoal();
+                    return;
+                }
             }
+
+
+            Vector3 dir = targetPathNode.position - this.transform.localPosition;
+
+            float distThisFrame = speed * Time.deltaTime;
+
+            if (dir.magnitude <= distThisFrame)
+            {
+                // We reached the node
+                targetPathNode = null;
+
+
+            }
+            else
+            {
+                // Move towards node
+                transform.Translate(dir.normalized * distThisFrame);
+            }
+
         }
-        
-
-        Vector3 dir = targetPathNode.position - this.transform.localPosition;
-
-        float distThisFrame = speed * Time.deltaTime;
-
-        if(dir.magnitude <= distThisFrame)
-        {
-            // We reached the node
-            targetPathNode = null;
-            
-
-        }
-        else
-        {
-            // Move towards node
-            transform.Translate(dir.normalized * distThisFrame);
-        }
-
-	}
+    }
 
     void ReachGoal()
     {

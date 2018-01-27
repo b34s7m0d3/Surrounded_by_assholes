@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PathCreator : MonoBehaviour
@@ -8,6 +9,24 @@ public class PathCreator : MonoBehaviour
 
     public GameObject prefab;
     public GameObject parent;
+
+    GameObject controller;
+    
+
+    private void Start()
+    {
+        controller = GameObject.Find("GameController");
+        
+    }
+
+    private void Update()
+    {
+       if (controller.GetComponent<GameController>().preparePhase)
+        {
+            // Instantiate(prefab);
+            Debug.Log("we can prepare");
+        }
+    }
 
     void OnMouseDown()
     {
