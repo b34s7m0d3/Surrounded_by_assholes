@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1057408364013752}
+  m_IsPrefabParent: 1
+--- !u!1 &1057408364013752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4176423919238270}
+  - component: {fileID: 114409387129863650}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4176423919238270
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057408364013752}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.040585, y: -5.186356, z: 0}
+  m_LocalScale: {x: 18.756508, y: 11.146576, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114409387129863650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057408364013752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18361421141368947a21cb8b44dd9995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveComps:
+  - playerPrefab: {fileID: 1339705656349000, guid: 4e5a0d387dc27394b81600988ad0216f,
+      type: 2}
+    num: 2
+  - playerPrefab: {fileID: 1339705656349000, guid: 4e5a0d387dc27394b81600988ad0216f,
+      type: 2}
+    num: 3
+  - playerPrefab: {fileID: 1339705656349000, guid: 4e5a0d387dc27394b81600988ad0216f,
+      type: 2}
+    num: 4
+  - playerPrefab: {fileID: 1339705656349000, guid: 4e5a0d387dc27394b81600988ad0216f,
+      type: 2}
+    num: 5
+  - playerPrefab: {fileID: 1339705656349000, guid: 4e5a0d387dc27394b81600988ad0216f,
+      type: 2}
+    num: 6

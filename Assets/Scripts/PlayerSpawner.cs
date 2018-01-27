@@ -60,6 +60,9 @@ public class PlayerSpawner : MonoBehaviour
                     // we just made them inactive, and then when we run
                     // out of waves, we restart at the first one,
                     // but double all enemy HPs or something?
+
+                    return;
+
                 }
 
                 Destroy(gameObject);

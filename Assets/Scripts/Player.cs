@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     GameObject pathGO;
+    GameObject pathEND;
 
     Transform targetPathNode;
     int pathNodeIndex = 0;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour {
     void Start () {
         pathGO = GameObject.Find("Path");
         controller = GameObject.Find("GameController");
+        pathEND = GameObject.Find("EndPoint");
 	}
 	
     void GetNextPathNode()
@@ -48,10 +50,15 @@ public class Player : MonoBehaviour {
                 if (targetPathNode == null)
                 {
                     // end of path
+                    targetPathNode = pathEND.transform.GetChild(pathNodeIndex);
+                    GetNextPathNode();
+                    if (targetPathNode == null)
+                    {
                     ReachGoal();
                     return;
                 }
             }
+        }
 
 
             Vector2 dir = targetPathNode.position - this.transform.localPosition;
