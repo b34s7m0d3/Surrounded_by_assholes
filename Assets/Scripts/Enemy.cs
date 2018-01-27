@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        SphereCollider fuckUpArea = GetComponent<SphereCollider>();
 
+        fuckUpArea.radius = fuckUpRadius;
     }
 
     // Update is called once per frame
@@ -37,5 +39,6 @@ public class Enemy : MonoBehaviour
     void FuckUpTransmission()
     {
         // Take distance to player and individual fuckUpProbability into account.
+
     }
 }
