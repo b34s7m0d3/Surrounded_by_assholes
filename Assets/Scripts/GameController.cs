@@ -8,13 +8,17 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public bool preparePhase = true;
+   
 
     public Button button;
+
+
 
     private void Start()
     {
         Button btn = button.GetComponent<Button>();
         button.onClick.AddListener(TaskOnClick);
+
     }
 
     void TaskOnClick()
@@ -29,15 +33,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-	    if (preparePhase)
-        {
-            //we can instantiate flags for the users
-        }
-        else
-        {
-            // send in the troops
-        }
-	}
-}
+
+ }
+
+

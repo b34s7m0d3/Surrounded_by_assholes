@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
         pathEND = GameObject.Find("EndPoint");
 	
 	
-
-        controller = GameObject.Find("GameController");
     }
 
 

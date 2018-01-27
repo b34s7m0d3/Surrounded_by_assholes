@@ -11,34 +11,32 @@ public class PathCreator : MonoBehaviour
     public GameObject parent;
 
     GameObject controller;
-    
+
+    bool canDo;
 
     private void Start()
     {
         controller = GameObject.Find("GameController");
-        
+        canDo = controller.GetComponent<GameController>().preparePhase;
+
+
     }
 
-    private void Update()
-    {
-       if (controller.GetComponent<GameController>().preparePhase)
-        {
-            // Instantiate(prefab);
-            //Debug.Log("we can prepare");
-        }
-    }
+    
 
     void OnMouseDown()
     {
         print("Mouse input registered");
 
-        // Calculate rounded position from clicked position.
-        Vector2 rawPosistion = CalculateWorldPointOfClick();
-        //Vector2 snappedPosition = SnapToWorldGrid(rawPosistion);
-        print("Clicked " + rawPosistion);
+        
+            // Calculate rounded position from clicked position.
+            Vector2 rawPosistion = CalculateWorldPointOfClick();
+            //Vector2 snappedPosition = SnapToWorldGrid(rawPosistion);
+            print("Clicked " + rawPosistion);
 
-        SpawnWaypoint(prefab, rawPosistion);
-    }
+            SpawnWaypoint(prefab, rawPosistion);
+        }
+    
 
     Vector2 CalculateWorldPointOfClick()
     {
@@ -59,8 +57,11 @@ public class PathCreator : MonoBehaviour
 
     void SpawnWaypoint(GameObject obj, Vector2 position)
     {
-        GameObject newWaypoint = Instantiate(obj, position, Quaternion.identity) as GameObject;
-        newWaypoint.transform.parent = parent.transform;
+        if (controller.GetComponent<GameController>().preparePhase)
+        {
+            GameObject newWaypoint = Instantiate(obj, position, Quaternion.identity) as GameObject;
+            newWaypoint.transform.parent = parent.transform;
+        }
     }
 
 }
