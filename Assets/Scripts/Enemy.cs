@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
             playerDetected = true;
             spriteRenderer.color = Color.red;
             StartCoroutine(FuckUpTransmission());
+ 
             Debug.Log("enter");
         }
     }

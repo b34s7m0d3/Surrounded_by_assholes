@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     GameObject pathEND;
 
     Transform targetPathNode;
+
+    Vector2 accuracy = new Vector2 (0.1f, 0.1f);
     int pathNodeIndex = 0;
 
     public float speed = 5.0f;
@@ -19,16 +21,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         pathGO = GameObject.Find("Path");
-<<<<<<< HEAD
+
         controller = GameObject.Find("GameController");
         pathEND = GameObject.Find("EndPoint");
-	}
 	
-=======
+	
+
         controller = GameObject.Find("GameController");
     }
 
->>>>>>> master
+
     void GetNextPathNode()
     {
         if (pathNodeIndex < pathGO.transform.childCount)
@@ -38,8 +40,15 @@ public class Player : MonoBehaviour
         }
         else
         {
-            targetPathNode = null;
-            ReachGoal();
+            
+            targetPathNode = pathEND.transform;
+            Vector2 comparison = this.transform.position;
+            Vector2 end = pathEND.transform.position;
+            if (comparison == end + accuracy || comparison == end -accuracy)
+            {
+                targetPathNode = null;
+            }
+            
         }
     }
 
@@ -58,13 +67,10 @@ public class Player : MonoBehaviour
                 if (targetPathNode == null)
                 {
                     // end of path
-                    targetPathNode = pathEND.transform.GetChild(pathNodeIndex);
-                    GetNextPathNode();
-                    if (targetPathNode == null)
-                    {
+                    
                     ReachGoal();
                     return;
-                }
+                
             }
         }
 
