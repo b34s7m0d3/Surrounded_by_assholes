@@ -15,7 +15,7 @@ public class PathCreator : MonoBehaviour
         Vector2 rawPosistion = CalculateWorldPointOfClick();
         Vector2 snappedPosition = SnapToWorldGrid(rawPosistion);
 
-        SpawnWaypoint(prefab, snappedPosition);
+        SpawnWaypoint(prefab, rawPosistion);
     }
 
     Vector2 CalculateWorldPointOfClick()
