@@ -42,6 +42,7 @@ public class Player : MonoBehaviour {
         {
             // We reached the node
             targetPathNode = null;
+
         }
         else
         {
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour {
 
     void ReachGoal()
     {
-        Destroy(gameObject);
+        Destroy(this);
     }
 
 }
