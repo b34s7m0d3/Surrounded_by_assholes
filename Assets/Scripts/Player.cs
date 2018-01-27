@@ -42,13 +42,15 @@ public class Player : MonoBehaviour
         {
             
             targetPathNode = pathEND.transform;
+            // might need to optimize this
+            /*
             Vector2 comparison = this.transform.position;
             Vector2 end = pathEND.transform.position;
             if (comparison == end + accuracy || comparison == end -accuracy)
             {
                 targetPathNode = null;
             }
-            
+            */
         }
     }
 
@@ -67,7 +69,7 @@ public class Player : MonoBehaviour
                 if (targetPathNode == null)
                 {
                     // end of path
-                    
+                    // right now no need for this. Might be used later
                     ReachGoal();
                     return;
                 
