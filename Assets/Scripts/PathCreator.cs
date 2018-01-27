@@ -24,7 +24,7 @@ public class PathCreator : MonoBehaviour
        if (controller.GetComponent<GameController>().preparePhase)
         {
             // Instantiate(prefab);
-            Debug.Log("we can prepare");
+            //Debug.Log("we can prepare");
         }
     }
 

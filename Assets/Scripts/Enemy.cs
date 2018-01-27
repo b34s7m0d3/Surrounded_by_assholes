@@ -29,17 +29,18 @@ public class Enemy : MonoBehaviour
     {
     }
 
-    private void OnCollisionEnter2D(Collision2D otherCollider)
+    private void OnTriggerEnter2D(Collider2D otherCollider)
     {
         if (otherCollider.gameObject.tag == "Player")
         {
             playerDetected = true;
             spriteRenderer.color = Color.red;
             StartCoroutine(FuckUpTransmission());
+            Debug.Log("enter");
         }
     }
 
-    private void OnCollisionExit2D(Collision2D otherCollider)
+    private void OnTriggerExit2D(Collider2D otherCollider)
     {
         if (otherCollider.gameObject.tag == "Player")
         {

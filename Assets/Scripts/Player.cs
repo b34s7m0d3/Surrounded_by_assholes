@@ -40,7 +40,7 @@ public class Player : MonoBehaviour {
         if (!controller.GetComponent<GameController>().preparePhase)
         {
             // follow phase start
-            Debug.Log("not preparing");
+            //Debug.Log("not preparing");
 
             if (targetPathNode == null)
             {
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
             }
 
 
-            Vector3 dir = targetPathNode.position - this.transform.localPosition;
+            Vector2 dir = targetPathNode.position - this.transform.localPosition;
 
             float distThisFrame = speed * Time.deltaTime;
 
@@ -62,8 +62,6 @@ public class Player : MonoBehaviour {
             {
                 // We reached the node
                 targetPathNode = null;
-
-
             }
             else
             {
