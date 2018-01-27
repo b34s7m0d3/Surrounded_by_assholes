@@ -18,12 +18,21 @@ public class Player : MonoBehaviour {
 	
     void GetNextPathNode()
     {
-        targetPathNode = pathGO.transform.GetChild(pathNodeIndex);
-        pathNodeIndex++;
+        if (pathNodeIndex < pathGO.transform.childCount)
+        {
+            targetPathNode = pathGO.transform.GetChild(pathNodeIndex);
+            pathNodeIndex++;
+        }
+        else
+        {
+            targetPathNode = null;
+            ReachGoal();
+        }
     }
 
 	// Update is called once per frame
 	void Update () {
+        
         if (targetPathNode == null)
         {
             GetNextPathNode();
@@ -31,8 +40,10 @@ public class Player : MonoBehaviour {
             {
                 // end of path
                 ReachGoal();
+                return;
             }
         }
+        
 
         Vector3 dir = targetPathNode.position - this.transform.localPosition;
 
@@ -42,6 +53,7 @@ public class Player : MonoBehaviour {
         {
             // We reached the node
             targetPathNode = null;
+            
 
         }
         else
@@ -54,7 +66,7 @@ public class Player : MonoBehaviour {
 
     void ReachGoal()
     {
-        Destroy(this);
+        Destroy(this.gameObject, 0.1f);
     }
 
 }
