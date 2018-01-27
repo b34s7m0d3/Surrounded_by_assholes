@@ -11,9 +11,12 @@ public class PathCreator : MonoBehaviour
 
     void OnMouseDown()
     {
+        print("Mouse input registered");
+
         // Calculate rounded position from clicked position.
         Vector2 rawPosistion = CalculateWorldPointOfClick();
-        Vector2 snappedPosition = SnapToWorldGrid(rawPosistion);
+        //Vector2 snappedPosition = SnapToWorldGrid(rawPosistion);
+        print("Clicked " + rawPosistion);
 
         SpawnWaypoint(prefab, rawPosistion);
     }

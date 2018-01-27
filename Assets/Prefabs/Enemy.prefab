@@ -68,9 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4573f716efb1496295da7ce386a477f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuckUpProbability: 0
+  fuckUpProbability: 0.5
   fuckUpRadius: 3.5
-  maxDisplacement: 0
+  maxDisplacement: 2
 --- !u!212 &212626431762796110
 SpriteRenderer:
   m_ObjectHideFlags: 1
