@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float fuckUpProbability;
+    public float minFuckUpProbability, maxFuckUpProbability;
     public float fuckUpRadius;
     public float maxDisplacement;
 
@@ -51,8 +51,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator FuckUpTransmission()
     {
-        // Wait for time influenced by probability.
-        yield return new WaitForSeconds(Random.Range(0f, fuckUpProbability));
+        // Wait for randomized time range.
+        yield return new WaitForSeconds(Random.Range(minFuckUpProbability, maxFuckUpProbability));
 
         // Get distance and fuck up transmission based on it.
         float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
@@ -63,11 +63,14 @@ public class Enemy : MonoBehaviour
     void FuckUpPosition(float distance)
     {
         Vector2 playerPosition = player.transform.position;
+        Debug.Log("Player position BEFORE displacement: " + playerPosition);
+
         Vector2 displacement = new Vector2(maxDisplacement / distance, maxDisplacement / distance);
+        Debug.Log("displacement Vector: " + displacement);
 
         // Displace player.
         playerPosition = playerPosition + displacement;
-        Debug.Log("Player position fucked up.");
+        Debug.Log("Player position AFTER displacement: " + playerPosition);
 
     }
 }

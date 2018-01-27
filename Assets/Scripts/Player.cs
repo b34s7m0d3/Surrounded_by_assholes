@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     GameObject pathGO;
 
@@ -14,11 +15,12 @@ public class Player : MonoBehaviour {
     GameObject controller;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         pathGO = GameObject.Find("Path");
         controller = GameObject.Find("GameController");
-	}
-	
+    }
+
     void GetNextPathNode()
     {
         if (pathNodeIndex < pathGO.transform.childCount)
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour {
             else
             {
                 // Move towards node
-                transform.Translate(dir.normalized * distThisFrame);
+                transform.Translate(dir.normalized * distThisFrame, Space.World);
             }
 
         }
