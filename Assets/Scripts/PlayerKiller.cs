@@ -49,30 +49,11 @@ public class PlayerKiller : MonoBehaviour
         {
             col.enabled = true;
 
-            /*
-            if (targetPlayer == null)
-            {
-                GetNextPlayerNode();
-                if (targetPlayer == null)
-                {
-                    // end of path
-                    // right now no need for this. Might be used later
-
-                    return;
-
-                }
-                */
-
-            
-
-
-                Vector2 dir = StuffToKill.transform.position - this.transform.localPosition;
-
 
                 float distThisFrame = speed * Time.deltaTime;
                 if (move)
                 {
-
+                    Vector2 dir = StuffToKill.transform.position - this.transform.localPosition;
                     // Move towards node
                     transform.Translate(dir.normalized * distThisFrame, Space.World);
                     if (StuffToKill.transform.position == null)

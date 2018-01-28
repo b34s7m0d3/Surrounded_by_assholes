@@ -10,5 +10,6 @@ public class StarLaser : MonoBehaviour {
     {
         Destroy(collision.gameObject);
         Debug.Log("Lazeeer");
+        this.GetComponentInParent<PlayerKiller>().move = false;
     }
 }

@@ -48,7 +48,7 @@ public class PlayerSpawner : MonoBehaviour
                     //spawnling.transform.parent = gameObject.transform;
                     Instantiate(wc.playerPrefab, this.transform.position, this.transform.rotation);
                     
-                    didSpawn = true;
+                    //didSpawn = true;
                     break;
                 }
             }
@@ -64,6 +64,7 @@ public class PlayerSpawner : MonoBehaviour
                 }
                 else
                 {
+                    transform.parent.GetChild(1).gameObject.SetActive(false);
                     // That was the last wave -- what do we want to do?
                     // What if instead of DESTROYING wave objects,
                     // we just made them inactive, and then when we run
