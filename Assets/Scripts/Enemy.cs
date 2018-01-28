@@ -7,26 +7,38 @@ public class Enemy : MonoBehaviour
     public float minFuckUpProbability, maxFuckUpProbability;
     public float fuckUpRadius;
     public float maxDisplacement;
+    
 
     private GameObject player;
     private SpriteRenderer spriteRenderer;
     private CircleCollider2D fuckUpArea;
     private bool playerDetected;
 
+    GameObject controller;
+
+    bool canDo;
+
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        controller = GameObject.Find("GameController");
+        canDo = controller.GetComponent<GameController>().preparePhase;
 
-        fuckUpArea = GetComponent<CircleCollider2D>();
-        fuckUpArea.radius = fuckUpRadius;
+        
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!canDo)
+        {
+            CreateCollider();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollider)
@@ -39,6 +51,12 @@ public class Enemy : MonoBehaviour
  
             Debug.Log("enter");
         }
+    }
+
+    void CreateCollider()
+    {
+        fuckUpArea = GetComponent<CircleCollider2D>();
+        fuckUpArea.radius = fuckUpRadius;
     }
 
     private void OnTriggerExit2D(Collider2D otherCollider)

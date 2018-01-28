@@ -6,11 +6,13 @@ public class PlayerSpawner : MonoBehaviour
 
     float spawnCD = 0.25f;
     float spawnCDremaining = 5;
+    public GameObject parent;
 
     [System.Serializable]
     public class WaveComponent
     {
         public GameObject playerPrefab;
+       
         public int num;
         [System.NonSerialized]
         public int spawned = 0;
@@ -18,7 +20,10 @@ public class PlayerSpawner : MonoBehaviour
 
     public WaveComponent[] waveComps;
 
-
+    private void Start()
+    {
+        parent = GameObject.Find("ParentSpawner");
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,6 +43,7 @@ public class PlayerSpawner : MonoBehaviour
                     // Spawn it!
                     wc.spawned++;
                     Instantiate(wc.playerPrefab, this.transform.position, this.transform.rotation);
+                    wc.playerPrefab.transform.SetParent(parent.transform);
 
                     didSpawn = true;
                     break;
