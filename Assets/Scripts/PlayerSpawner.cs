@@ -6,13 +6,13 @@ public class PlayerSpawner : MonoBehaviour
 
     float spawnCD = 0.25f;
     float spawnCDremaining = 5;
-    public GameObject parent;
+    
 
     [System.Serializable]
     public class WaveComponent
     {
         public GameObject playerPrefab;
-       
+        public GameObject parent;
         public int num;
         [System.NonSerialized]
         public int spawned = 0;
@@ -20,31 +20,34 @@ public class PlayerSpawner : MonoBehaviour
 
     public WaveComponent[] waveComps;
 
+    GameObject controller;
+
+
+
     private void Start()
     {
-        parent = GameObject.Find("ParentSpawner");
+        
+        controller = GameObject.Find("GameController");
+
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnPlayer(bool didSpawn)
     {
-        spawnCDremaining -= Time.deltaTime;
-        if (spawnCDremaining < 0)
+        foreach (WaveComponent wc in waveComps)
         {
-            spawnCDremaining = spawnCD;
-
-            bool didSpawn = false;
-
-            // Go through the wave comps until we find something to spawn;
-            foreach (WaveComponent wc in waveComps)
+            //wc.playerPrefab.transform.parent = gameObject.transform;
+            if (!controller.GetComponent<GameController>().preparePhase)
             {
                 if (wc.spawned < wc.num)
                 {
                     // Spawn it!
-                    wc.spawned++;
-                    Instantiate(wc.playerPrefab, this.transform.position, this.transform.rotation);
-                    wc.playerPrefab.transform.SetParent(parent.transform);
 
+                    wc.spawned++;
+                    //GameObject spawnling = Instantiate(wc.playerPrefab, this.transform.position, this.transform.rotation) as GameObject;
+                    //spawnling.transform.parent = gameObject.transform;
+                    Instantiate(wc.playerPrefab, this.transform.position, this.transform.rotation);
+                    
                     didSpawn = true;
                     break;
                 }
@@ -73,6 +76,27 @@ public class PlayerSpawner : MonoBehaviour
 
                 Destroy(gameObject);
             }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        spawnCDremaining -= Time.deltaTime;
+        if (spawnCDremaining < 0)
+        {
+            spawnCDremaining = spawnCD;
+
+            bool didSpawn = false;
+
+            if (!controller.GetComponent<GameController>().preparePhase)
+            {
+                SpawnPlayer(didSpawn);
+            }
+           
+
+                // Go through the wave comps until we find something to spawn;
+
         }
     }
 }

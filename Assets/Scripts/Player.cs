@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
 
     Transform targetPathNode;
 
-    Vector2 accuracy = new Vector2 (0.1f, 0.1f);
     int pathNodeIndex = 0;
 
     public float speed = 5.0f;

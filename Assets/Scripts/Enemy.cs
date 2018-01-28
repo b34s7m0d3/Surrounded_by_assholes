@@ -19,8 +19,7 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        fuckUpArea = GetComponent<CircleCollider2D>();
-        fuckUpArea.radius = fuckUpRadius;
+       
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
