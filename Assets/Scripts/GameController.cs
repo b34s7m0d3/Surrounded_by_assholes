@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     public bool preparePhase = true;
-   
-
     public Button button;
 
+    private float timeAtStart;
 
 
     private void Start()
@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour {
         if (preparePhase)
         {
             preparePhase = false;
+
+            // Log game start time.
+            timeAtStart = Time.time;
         }
         else
         {
@@ -33,7 +36,12 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    public float GetTimeAtStart()
+    {
+        Debug.Log("timeAtStart was captured as: " + timeAtStart);
+        return timeAtStart;
+    }
 
- }
+}
 
 
