@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy_Tim : MonoBehaviour
 {
     public float minWaitBeforeFuckUp = 0.1f;
     public float maxWaitBeforeFuckUp = 1f;
@@ -84,4 +84,6 @@ public class Enemy : MonoBehaviour
         player.transform.position = playerPosition;
         Debug.Log(player.name + " displaced by: " + displacement);
     }
+
+
 }
