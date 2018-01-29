@@ -42,6 +42,11 @@ public class GameController : MonoBehaviour
         return timeAtPlayPhaseStart;
     }
 
+    public bool IsPreparephase()
+    {
+        return preparePhase;
+    }
+
 }
 
 
