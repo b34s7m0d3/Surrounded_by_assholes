@@ -23,11 +23,13 @@ public class Destroyer : MonoBehaviour
 
     private void Update()
     {
-        float timeSinceStart = Time.time - gameController.GetTimeAtStart();
+        // TODO: if playphase
+        float timeSincePlayPhaseStart = Time.timeSinceLevelLoad - gameController.GetTimeAtPlayPhaseStart();
         // Check Lose condition.
-        if (count < winConditionCount && timeSinceStart > timeLimitSeconds)
+        if (count < winConditionCount && timeSincePlayPhaseStart > timeLimitSeconds)
         {
             // Lost
+            Debug.Log("Time at lose condition: " + timeSincePlayPhaseStart);
             LoadLevel("Lose");
         }
     }
