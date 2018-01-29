@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public bool preparePhase = true;
     public Button button;
 
-    private float timeAtStart;
+    private float timeAtPlayPhaseStart;
 
 
     private void Start()
@@ -27,8 +27,9 @@ public class GameController : MonoBehaviour
         {
             preparePhase = false;
 
-            // Log game start time.
-            timeAtStart = Time.time;
+            // Log PlayPhase start time.
+            timeAtPlayPhaseStart = Time.timeSinceLevelLoad;
+            Debug.Log("timeAtPlayPhaseStart captured as: " + timeAtPlayPhaseStart);
         }
         else
         {
@@ -36,10 +37,14 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public float GetTimeAtStart()
+    public float GetTimeAtPlayPhaseStart()
     {
-        Debug.Log("timeAtStart was captured as: " + timeAtStart);
-        return timeAtStart;
+        return timeAtPlayPhaseStart;
+    }
+
+    public bool IsPreparephase()
+    {
+        return preparePhase;
     }
 
 }

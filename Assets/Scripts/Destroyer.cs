@@ -12,39 +12,48 @@ public class Destroyer : MonoBehaviour
     public float timeLimitSeconds = 20;
 
     private int count = 0;
-    private GameObject gameControllerObj;
     private GameController gameController;
 
     void Start()
     {
-        gameControllerObj = GameObject.Find("GameController");
-        gameController = gameControllerObj.GetComponent<GameController>();
+        //gameControllerObj = GameObject.Find("GameController");
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     private void Update()
     {
-        float timeSinceStart = Time.time - gameController.GetTimeAtStart();
-        // Check Lose condition.
-        if (count < winConditionCount && timeSinceStart > timeLimitSeconds)
+        bool preparePhase = gameController.IsPreparephase();
+
+        if (!preparePhase)
         {
-            // Lost
-            LoadLevel("Lose");
+            // Check Lose condition.
+            float timeSincePlayPhaseStart = Time.timeSinceLevelLoad - gameController.GetTimeAtPlayPhaseStart();
+            Debug.Log("preparePhase over, checking lose condition.");
+            if (count < winConditionCount && timeSincePlayPhaseStart > timeLimitSeconds)
+            {
+                // Lost
+                Debug.Log("Time at lose condition: " + timeSincePlayPhaseStart);
+                LoadLevel("Lose");
+            }
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-
-        count++;
-        Debug.Log("Kill it with fire. Count: " + count);
-
-        Destroy(col.gameObject);
-
-        // Check Win Condition.
-        if (count >= winConditionCount)
+        if (col.gameObject.tag == "Player")
         {
-            // Won
-            LoadLevel("Win");
+            count++;
+            Debug.Log("Kill it with fire. Count: " + count + ". Checking Win Condition.");
+
+            Destroy(col.gameObject);
+
+            // Check Win Condition.
+            if (count >= winConditionCount)
+            {
+                // Won
+                LoadLevel("Win");
+            }
         }
     }
 
